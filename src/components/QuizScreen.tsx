@@ -203,12 +203,9 @@ export default function QuizScreen({ setup, onQuizComplete, onBackToSetup }: Qui
           <div className="mt-8 border-t border-white/10 pt-5">
             
             {showCorrectionWarning && (
-              <div id="wrong-answer-warning" className="p-4 bg-red-950/50 border border-red-500/50 rounded-xl flex items-start gap-3 text-red-100 animate-shake">
-                <ShieldAlert className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
-                <div className="text-xs sm:text-sm">
-                  <strong className="font-bold block mb-0.5 uppercase tracking-wider">คำตอบไม่ถูกต้อง! (-400 คะแนน)</strong>
-                  กรุณาศึกษาเนื้อหาตัวชี้วัดหรือคำใบ้ใหม่อีกครั้ง กฎเกณฑ์จำลองไม่อนุญาตให้ผ่านด่านถัดไปจนกว่าจะตอบถูกต้องตามหลักกฎหมาย
-                </div>
+              <div id="wrong-answer-warning" className="p-4 bg-red-950/50 border border-red-500/50 rounded-xl flex items-center justify-center gap-3 text-red-100 animate-shake font-bold">
+                <ShieldAlert className="h-5 w-5 text-red-400 shrink-0" />
+                <span className="text-sm">ลองใหม่</span>
               </div>
             )}
 
@@ -270,29 +267,6 @@ export default function QuizScreen({ setup, onQuizComplete, onBackToSetup }: Qui
                 <span>เมื่อตอบวิเคราะห์ถูก นาฬิกาประเมินเวลาจะหยุดชั่วคราว เพื่อให้นักศึกษาได้อ่านทำความเข้าใจ</span>
               </li>
             </ul>
-          </div>
-
-          {/* Quick Cheat Sheet References according to Thailand guidelines */}
-          <div className="glass-panel p-5 shadow-lg relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-bu-purple/20 to-transparent pointer-events-none"></div>
-            <h3 className="text-sm font-bold text-slate-200 flex items-center gap-2 mb-3">
-              <BookOpen className="h-4 w-4 text-bu-orange" />
-              สรุปย่นย่อบทเกณฑ์ บัญชีไทย
-            </h3>
-            <div className="space-y-4 text-xs text-slate-300 leading-relaxed">
-              <div>
-                <span className="font-bold text-bu-orange block uppercase tracking-wider mb-0.5">รูปแบบนิติกรรม:</span>
-                ห้างหุ้นส่วน หรือ บริษัทจำกัด ต้องจัดทำส่งยื่นบัญชีประเมินอย่างเหมาะสมให้ทั้ง DBD และกรมสรรพากร ภายในกำหนดเวลากฎหมาย
-              </div>
-              <div>
-                <span className="font-bold text-purple-300 block uppercase tracking-wider mb-0.5">การยื่นแบบรายการภาษี:</span>
-                บุคคลธรรมดา ยึด ภ.ง.ด. 90/94 สรรพากร ขณะที่นิติบุคคล ส่งยื่นแบบรายการ ภ.ง.ด. 50/51
-              </div>
-              <div>
-                <span className="font-bold text-emerald-400 block uppercase tracking-wider mb-0.5">ภาษีมูลค่าเพิ่ม 7% (VAT):</span>
-                หากมีรายได้เกณฑ์พึงประเมินปีละเกิน 1,800,000 บาท ควรรีบยื่นจดทะเบียนภายใน 30 วันนับแต่รอบรายได้บรรลุ เว้นแต่การขายผลผลิตเกษตรสัตว์น้ำดิบทีได้รับการยกเว้นภาษีมูลค่าเพิ่ม
-              </div>
-            </div>
           </div>
 
           {/* Back/Abort Game */}

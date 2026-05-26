@@ -126,7 +126,7 @@ export default function SetupScreen({ onBack, onSetupComplete, initialSetup }: S
 
       <div className="text-center mb-8">
         <h1 className="text-4xl font-black text-white tracking-tighter uppercase">
-          BUSINESS <span className="text-bu-orange">SETUP</span>
+          BUSINESS <span className="text-bu-orange">MASTERMIND</span>
         </h1>
         <p className="text-xs text-gray-400 uppercase tracking-widest font-semibold mt-2">
           Simulation by Bangkok University Accounting
@@ -136,50 +136,7 @@ export default function SetupScreen({ onBack, onSetupComplete, initialSetup }: S
         </p>
       </div>
 
-      {/* Preset Pickers for Academic Testing */}
-      <div className="glass-panel p-6 mb-6">
-        <h3 className="text-xs font-bold uppercase text-purple-300 tracking-widest mb-4 flex items-center gap-2 justify-center sm:justify-start">
-          <Coins className="h-4 w-4 text-bu-orange" />
-          ปุ่มลัดจำลองโจทย์กรณีศึกษา (Academic Presets)
-        </h3>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <button
-            type="button"
-            onClick={() => applyPreset("sme_sole")}
-            className="business-card bg-white/5 rounded-xl p-3 text-left transition-all group cursor-pointer"
-          >
-            <div className="text-xs text-bu-orange font-bold group-hover:text-amber-400">1. บุคคลธรรมดา SME</div>
-            <div className="text-[10px] text-gray-400 mt-1 uppercase font-semibold">รายได้น้อยกว่า 1.8ล้าน</div>
-          </button>
 
-          <button
-            type="button"
-            onClick={() => applyPreset("exempt_vat")}
-            className="business-card bg-white/5 rounded-xl p-3 text-left transition-all group cursor-pointer"
-          >
-            <div className="text-xs text-purple-300 font-bold group-hover:text-amber-400">2. อาหารทะเลสด</div>
-            <div className="text-[10px] text-emerald-400 mt-1 uppercase font-semibold">ยกเว้นภาษีมูลค่าเพิ่ม</div>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => applyPreset("small_corp")}
-            className="business-card bg-white/5 rounded-xl p-3 text-left transition-all group cursor-pointer"
-          >
-            <div className="text-xs text-blue-400 font-bold group-hover:text-amber-400">3. ห้างหุ้นส่วนจำกัด</div>
-            <div className="text-[10px] text-gray-400 mt-1 uppercase font-semibold">ไซส์เล็กใช้สิทธิ์ TA ตรวจ</div>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => applyPreset("large_corp")}
-            className="business-card bg-white/5 rounded-xl p-3 text-left transition-all group cursor-pointer"
-          >
-            <div className="text-xs text-pink-400 font-bold group-hover:text-amber-400">4. บริษัทขนาดใหญ่</div>
-            <div className="text-[10px] text-gray-400 mt-1 uppercase font-semibold">ตรวจงบโดย CPA เท่านั้น</div>
-          </button>
-        </div>
-      </div>
 
       <form onSubmit={handleStartGame} className="space-y-6">
         
@@ -230,18 +187,6 @@ export default function SetupScreen({ onBack, onSetupComplete, initialSetup }: S
                     </option>
                   ))}
                 </select>
-
-                {activeActivityObj && (
-                  <div className="mt-2.5 p-3.5 bg-white/5 rounded-xl border border-white/10 text-xs text-gray-300 leading-relaxed">
-                    <span className="font-bold text-bu-orange block mb-1">🔍 บันทึกคุณสมบัติกิจกรรม:</span>
-                    {activeActivityObj.description}
-                    {activeActivityObj.id === "4_fresh_fish" && (
-                      <strong className="block text-emerald-400 mt-1 font-bold">
-                        💡 กฎเหล็กประมวลรัษฎากร: ขายสัตว์น้ำดิบได้รับยกเว้นภาษี VAT เสมอ!
-                      </strong>
-                    )}
-                  </div>
-                )}
               </div>
 
               {/* Business Form (5 Options) */}
@@ -261,22 +206,10 @@ export default function SetupScreen({ onBack, onSetupComplete, initialSetup }: S
                     </option>
                   ))}
                 </select>
-
-                {activeFormObj && (
-                  <div className="mt-2.5 p-3.5 bg-slate-950/60 rounded-xl border border-white/10 text-xs text-slate-300 leading-relaxed">
-                    <span className="font-bold text-purple-300 block mb-1">
-                      👥 ลักษณะ: {activeFormObj.legalClass === "corporate" ? "นิติบุคคล (Corporate)" : "บุคคลธรรมดา (Individual)"}
-                    </span>
-                    {activeFormObj.description}
-                  </div>
-                )}
               </div>
             </div>
             
             <div className="pt-4">
-              <p className="text-[10px] text-gray-500 italic leading-relaxed">
-                * ข้อควรทราบ: นิติบุคคลมีข้อผูกพันในการยื่นส่งบัญชีทั้งกรมพัฒนาธุรกิจการค้า และกรมสรรพากร
-              </p>
             </div>
           </div>
 
@@ -306,11 +239,6 @@ export default function SetupScreen({ onBack, onSetupComplete, initialSetup }: S
                   />
                   <span className="absolute right-3.5 top-2.5 text-xs text-gray-400 font-bold">บาท</span>
                 </div>
-                {annualRevenueStr && parseInt(annualRevenueStr) > 1800000 && activityId !== "4_fresh_fish" && (
-                  <span className="text-[11px] text-bu-orange font-bold block mt-1">
-                    ⚠️ รายได้คาดการณ์เกิน 1.8 ล้านบาท มีหน้าที่ตามกฎหมายต้องจดทะเบียนภาษีมูลค่าเพิ่ม!
-                  </span>
-                )}
               </div>
 
               {/* Total Assets */}
@@ -354,13 +282,8 @@ export default function SetupScreen({ onBack, onSetupComplete, initialSetup }: S
               </div>
             </div>
 
-            {/* Side educational hints summary */}
-            <div className="bg-white/5 rounded-xl border border-white/10 p-3 text-[11px] text-gray-300 mt-4 leading-relaxed flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></div>
-              <span>
-                <strong>เกร็ดความรู้:</strong> ผู้สอบบัญชีภาษีอากร (TA) ตรวจสอบงบห้างหุ้นส่วนเล็กได้ (ทุนไม่เกิน 5M / สินทรัพย์ไม่เกิน 30M / รายได้ไม่เกิน 30M) หากเกินเกณฑ์อย่างใดอย่างหนึ่ง ต้องยื่นโดยผู้สอบบัญชีรับอนุญาต (CPA) เท่านั้น!
-              </span>
-            </div>
+            {/* Empty block to replace tip */}
+            <div className="pt-2"></div>
           </div>
         </div>
 
